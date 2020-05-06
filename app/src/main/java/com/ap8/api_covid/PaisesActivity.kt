@@ -29,6 +29,7 @@ class PaisesActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
 
         carregarEstatisticas()
+
     }
 
     private fun carregarEstatisticas() {
@@ -41,7 +42,6 @@ class PaisesActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
 
     private fun atualizarEstatisticas(resultado: List<Estatisticas>?) {

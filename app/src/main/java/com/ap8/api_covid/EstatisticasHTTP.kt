@@ -6,6 +6,7 @@ import android.util.Log
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONArray
+import org.json.JSONObject
 import java.io.IOException
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -31,8 +32,9 @@ object EstatisticasHTTP {
         val res = client.newCall(req).execute()
 
         val jsonString = res.body?.string()
-        val json = JSONArray(jsonString)
-        return readJson(json)
+        val json_Object = JSONObject(jsonString)
+        val json_array = json_Object.getJSONArray("data")
+        return readJson(json_array)
     }
 
     fun readJson(jsonArray: JSONArray): List<Estatisticas>? {
@@ -71,18 +73,3 @@ object EstatisticasHTTP {
         return formattedDate
     }
 }
-
-
-//    private fun connect(enderecoURL: String): HttpURLConnection {
-//        val second = 1000
-//        val url = URL(enderecoURL)
-//        val connection = (url.openConnection() as HttpURLConnection).apply {
-//            readTimeout = 10 * second
-//            connectTimeout = 15 * second
-//            requestMethod = "GET"
-//            doInput = true
-//            doOutput = false
-//        }
-//        connection.connect()
-//        return connection
-//    }
