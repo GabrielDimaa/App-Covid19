@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Estatísticas Covid-19</string>
+    <string name="title_home">Início</string>
+    <string name="mundo">Mundo</string>
+    <string name="paises">Países</string>
+    <string name="estados">Estados \n Brasileiros</string>
+
+    <string-array name="marca">
+        <item>ANTARCTICA</item>
+        <item>AMSTEL</item>
+        <item>BRAHMA</item>
+        <item>BOHEMIA</item>
+        <item>BUDWEISER</item>
+        <item>BAVARIA</item>
+        <item>CORONA</item>
+        <item>DEVASSA</item>
+        <item>EISENBAHN</item>
+        <item>KAISER</item>
+        <item>HEINEKEN</item>
+        <item>ITAIPAVA</item>
+        <item>POLAR</item>
+        <item>SCHIN</item>
+        <item>SKOL</item>
+        <item>SKOL BEATS</item>
+        <item>STELLA ARTOIS</item>
+        <item>SUBZERO</item>
+    </string-array>
+    <string-array name="ml">
+        <item>250</item>
+        <item>275</item>
+        <item>330</item>
+        <item>343</item>
+        <item>350</item>
+        <item>355</item>
+        <item>473</item>
+        <item>550</item>
+        <item>600</item>
+    </string-array>
+    <string name="title_activity_paises">PaisesActivity</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_estados">EstadosActivity</string>
+    <string name="title_activity_mundo">MundoActivity</string>
+</resources>
