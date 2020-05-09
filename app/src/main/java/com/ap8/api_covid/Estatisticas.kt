@@ -3,17 +3,21 @@ package com.ap8.api_covid
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class Estatisticas (
-    var country: String,
-    var cases: Int,
-    var confirmed: Int,
-    var deaths: Int,
-    var recovered: Int,
-    var date: String,
-    var hour: String
+class Estatisticas(
+    var country: String?,
+    var uf: String?,
+    var state: String?,
+    var suspects: Int?,
+    var refuses: Int?,
+    var cases: Int?,
+    var confirmed: Int?,
+    var deaths: Int?,
+    var recovered: Int?,
+    var date: String?,
+    var hour: String?
 ) {
     override fun toString(): String {
-        return date
+        return date.toString()
     }
 
     fun getData(date: String): String {

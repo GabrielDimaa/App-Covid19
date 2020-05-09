@@ -13,7 +13,6 @@ import java.time.format.DateTimeFormatter
 import java.util.concurrent.TimeUnit
 
 object EstatisticasHTTP {
-    val Json_URL = "https://covid19-brazil-api.now.sh/api/report/v1/countries"
 
     fun hasConnection(context: Context): Boolean {
         val cm = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -21,7 +20,9 @@ object EstatisticasHTTP {
         return info != null && info.isConnected
     }
 
-    fun loadEstatisticas(): List<Estatisticas>? {
+    fun loadEstatisticas(comPath: String): List<Estatisticas>? {
+        val Json_URL = "https://covid19-brazil-api.now.sh/api/report/v1${comPath}"
+
         val client = OkHttpClient.Builder()
             .readTimeout(5, TimeUnit.SECONDS)
             .connectTimeout(10, TimeUnit.SECONDS)
@@ -34,28 +35,22 @@ object EstatisticasHTTP {
         val jsonString = res.body?.string()
         val json_Object = JSONObject(jsonString)
         val json_array = json_Object.getJSONArray("data")
-        return readJson(json_array)
+        return readJson(json_array, comPath)
     }
 
-    fun readJson(jsonArray: JSONArray): List<Estatisticas>? {
+    fun readJson(jsonArray: JSONArray, comPath: String): List<Estatisticas>? {
         val array_estatisticas = mutableListOf<Estatisticas>()
 
         try {
             for (i in 0 .. jsonArray.length()-1){
-                var json = jsonArray.getJSONObject(i)
-                val date_ = formatarData(json.getString("updated_at").substring(0,10))
-                val hour_ = json.getString("updated_at").substring(11, 16)
-
-                var estatisticas = Estatisticas(
-                    json.getString("country"),
-                    json.getInt("cases"),
-                    json.getInt("confirmed"),
-                    json.getInt("deaths"),
-                    json.getInt("recovered"),
-                    date_,
-                    hour_
-                )
-                array_estatisticas.add(estatisticas)
+                val json = jsonArray.getJSONObject(i)
+                if(comPath === "/countries") {
+                    var dados = getJsonPaises(json)
+                    array_estatisticas.add(dados)
+                } else if(comPath === "") {
+                    var dados = getJsonEstados(json)
+                    array_estatisticas.add(dados)
+                }
             }
         }
         catch (e : IOException){
@@ -63,6 +58,44 @@ object EstatisticasHTTP {
         }
 
         return array_estatisticas
+    }
+
+    fun getJsonPaises(json: JSONObject): Estatisticas {
+        val date_ = formatarData(json.getString("updated_at").substring(0,10))
+        val hour_ = json.getString("updated_at").substring(11, 16)
+        val estatisticas = Estatisticas(
+            country = json.getString("country"),
+            cases = json.getInt("cases"),
+            confirmed = json.getInt("confirmed"),
+            deaths = json.getInt("deaths"),
+            recovered = json.getInt("recovered"),
+            date = date_,
+            hour = hour_,
+            uf = null,
+            state = null,
+            refuses = null,
+            suspects = null
+        )
+        return estatisticas
+    }
+
+    fun getJsonEstados(json: JSONObject): Estatisticas {
+        val date_ = formatarData(json.getString("datetime").substring(0,10))
+        val hour_ = json.getString("datetime").substring(11, 16)
+        val estatisticas = Estatisticas(
+            uf = json.getString("uf"),
+            state = json.getString("state"),
+            cases = json.getInt("cases"),
+            deaths = json.getInt("deaths"),
+            suspects = json.getInt("suspects"),
+            refuses = json.getInt("refuses"),
+            date = date_,
+            hour = hour_,
+            country = null,
+            recovered = null,
+            confirmed = null
+        )
+        return estatisticas
     }
 
     fun formatarData(data: String): String {

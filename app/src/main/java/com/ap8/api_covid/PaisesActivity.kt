@@ -68,7 +68,8 @@ class PaisesActivity : AppCompatActivity() {
 
     inner class EstatisticasTask: AsyncTask<Void, Void, List<Estatisticas>>() {
         override fun doInBackground(vararg params: Void?): List<Estatisticas>? {
-            return EstatisticasHTTP.loadEstatisticas()
+            val path = "/countries"
+            return EstatisticasHTTP.loadEstatisticas(path)
         }
         override fun onPostExecute(resultado: List<Estatisticas>?) {
             super.onPostExecute(resultado)
@@ -88,8 +89,7 @@ class PaisesActivity : AppCompatActivity() {
     fun getPaises() {
         for(index in 0 .. estatisticasList.size - 1) {
             val elemento = estatisticasList[index]
-            array_paises.add(elemento.country)
-
+            array_paises.add(elemento.country.toString())
         }
     }
 

@@ -1,6 +1,5 @@
 package com.ap8.api_covid
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class Adapter_Dados(private var lista: ArrayList<String>):
-    RecyclerView.Adapter<Adapter_Dados.VH>(), Filterable {
+    RecyclerView.Adapter<Adapter_Dados.VH>(), Filterable  {
 
     var lista_filtrada: ArrayList<String> = lista
     var lista_aux: ArrayList<String> = lista
@@ -66,5 +65,4 @@ class Adapter_Dados(private var lista: ArrayList<String>):
         val dados = lista[position]
         holder.name.text = dados
     }
-
 }
