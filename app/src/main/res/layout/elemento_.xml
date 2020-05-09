@@ -1,13 +1,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/cultivado"
+    android:orientation="vertical"
     android:padding="16dp">
 
     <TextView
         android:id="@+id/local_name_"
-        tools:text="##/##/####"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:actionViewClass="android.support.v7.widget.SearchView"
+        android:onClick="onClick"
+        android:clickable="true"
+        android:textSize="14sp"
+        android:textColor="@color/background"
+        tools:text="#" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/elemento_customize" />
 
 </LinearLayout>

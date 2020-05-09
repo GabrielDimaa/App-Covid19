@@ -86,19 +86,11 @@ class PaisesActivity : AppCompatActivity() {
     }
 
     fun getPaises() {
-        //val listView = findViewById<ListView>(R.id.listView)
-        //val array_paises = ArrayList<String>()
-
         for(index in 0 .. estatisticasList.size - 1) {
             val elemento = estatisticasList[index]
             array_paises.add(elemento.country)
+
         }
-
-//        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, array_paises)
-//        listView.adapter = adapter
-
-
-
     }
 
     fun initRecycler() {

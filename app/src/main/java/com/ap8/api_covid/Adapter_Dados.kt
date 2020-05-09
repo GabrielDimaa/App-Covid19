@@ -15,21 +15,18 @@ import kotlin.collections.ArrayList
 class Adapter_Dados(private var lista: ArrayList<String>):
     RecyclerView.Adapter<Adapter_Dados.VH>(), Filterable {
 
-    var lista_filtrada = ArrayList<String>()
-
-    init {
-        lista_filtrada = lista
-    }
+    var lista_filtrada: ArrayList<String> = lista
+    var lista_aux: ArrayList<String> = lista
 
     override fun getFilter(): Filter {
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
                 if (charSearch.isEmpty()) {
-                    lista_filtrada = lista
+                    lista_filtrada = lista_aux
                 } else {
                     val resultList = ArrayList<String>()
-                    for (row in lista) {
+                    for (row in lista_aux) {
                         if (row.toLowerCase(Locale.ROOT).contains(charSearch.toLowerCase(Locale.ROOT))) {
                             resultList.add(row)
                         }
@@ -43,11 +40,11 @@ class Adapter_Dados(private var lista: ArrayList<String>):
 
             @Suppress("UNCHECKED_CAST")
             override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-                lista_filtrada = results?.values as ArrayList<String>
+                lista = results?.values as ArrayList<String>
                 notifyDataSetChanged()
             }
-
         }
+        lista = lista_aux
     }
 
     class VH(item: View):RecyclerView.ViewHolder(item) {
