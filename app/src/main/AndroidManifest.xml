@@ -13,8 +13,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".DadosActivity"
+            android:label="@string/title_activity_dados"></activity>
+        <activity
             android:name=".MundoActivity"
-            android:label="@string/title_activity_mundo"></activity>
+            android:label="@string/title_activity_mundo" />
         <activity
             android:name=".EstadosActivity"
             android:label="@string/title_activity_estados" />
