@@ -1,17 +1,14 @@
 <resources>
-    <string name="app_name">Estatísticas Covid-19</string>
+    <string name="app_name">Covid-19</string>
     <string name="title_home">Início</string>
     <string name="mundo">Mundo</string>
     <string name="paises">Países</string>
     <string name="estados">Estados \n Brasileiros</string>
     <string name="search_hint">Procurar um País:</string>
     <string name="app_label">procurar pais</string>
-
-    <string-array name="paises_"></string-array>
-    <string name="title_activity_paises">PaisesActivity</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="title_activity_estados">EstadosActivity</string>
-    <string name="title_activity_mundo">MundoActivity</string>
-    <string name="title_activity_dados">DadosActivity</string>
+    <string name="casos">Casos</string>
+    <string name="confirmados">Confirmados</string>
+    <string name="mortes">Óbitos</string>
+    <string name="curados">Casos Curados</string>
+    <string name="estatisticas_mundiais">Estatisticas \n Mundiais:</string>
 </resources>

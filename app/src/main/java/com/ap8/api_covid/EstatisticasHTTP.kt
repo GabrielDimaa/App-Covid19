@@ -20,7 +20,7 @@ object EstatisticasHTTP {
         return info != null && info.isConnected
     }
 
-    fun loadEstatisticas(comPath: String): List<Estatisticas>? {
+    fun loadEstatisticas(comPath: String): MutableList<Estatisticas> {
         val Json_URL = "https://covid19-brazil-api.now.sh/api/report/v1${comPath}"
 
         val client = OkHttpClient.Builder()
@@ -34,24 +34,42 @@ object EstatisticasHTTP {
 
         val jsonString = res.body?.string()
         val json_Object = JSONObject(jsonString)
-        val json_array = json_Object.getJSONArray("data")
-        return readJson(json_array, comPath)
+        if(comPath == "/countries" || comPath == "") {
+            val json_array = json_Object.getJSONArray("data")
+            return readJsonArray(json_array, comPath)
+        }
+
+        return readJsonObjetic(json_Object)
     }
 
-    fun readJson(jsonArray: JSONArray, comPath: String): List<Estatisticas>? {
+    fun readJsonArray(jsonArray: JSONArray, comPath: String): MutableList<Estatisticas> {
         val array_estatisticas = mutableListOf<Estatisticas>()
 
         try {
             for (i in 0 .. jsonArray.length()-1){
                 val json = jsonArray.getJSONObject(i)
-                if(comPath === "/countries") {
+                if(comPath == "/countries") {
                     var dados = getJsonPaises(json)
                     array_estatisticas.add(dados)
-                } else if(comPath === "") {
+                } else if(comPath == "") {
                     var dados = getJsonEstados(json)
                     array_estatisticas.add(dados)
                 }
             }
+        }
+        catch (e : IOException){
+            Log.e("Erro", "Impossivel ler JSON")
+        }
+
+        return array_estatisticas
+    }
+
+    fun readJsonObjetic(json: JSONObject): MutableList<Estatisticas> {
+        val array_estatisticas = mutableListOf<Estatisticas>()
+
+        try {
+            var dados = getJsonPaises(json.getJSONObject("data"))
+            array_estatisticas.add(dados)
         }
         catch (e : IOException){
             Log.e("Erro", "Impossivel ler JSON")
@@ -73,8 +91,8 @@ object EstatisticasHTTP {
             hour = hour_,
             uf = null,
             state = null,
-            refuses = null,
-            suspects = null
+            refuses = 0,
+            suspects = 0
         )
         return estatisticas
     }
@@ -92,8 +110,8 @@ object EstatisticasHTTP {
             date = date_,
             hour = hour_,
             country = null,
-            recovered = null,
-            confirmed = null
+            recovered = 0,
+            confirmed = 0
         )
         return estatisticas
     }

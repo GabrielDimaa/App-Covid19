@@ -7,12 +7,12 @@ class Estatisticas(
     var country: String?,
     var uf: String?,
     var state: String?,
-    var suspects: Int?,
-    var refuses: Int?,
-    var cases: Int?,
-    var confirmed: Int?,
-    var deaths: Int?,
-    var recovered: Int?,
+    var suspects: Int = 0,
+    var refuses: Int = 0,
+    var cases: Int = 0,
+    var confirmed: Int = 0,
+    var deaths: Int = 0,
+    var recovered: Int = 0,
     var date: String?,
     var hour: String?
 ) {

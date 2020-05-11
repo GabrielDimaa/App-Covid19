@@ -1,5 +1,6 @@
 package com.ap8.api_covid
 
+import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.view.Menu
@@ -16,7 +17,7 @@ class PaisesActivity : AppCompatActivity() {
 
     private var estatisticasList = mutableListOf<Estatisticas>()
     var array_paises = ArrayList<String>()
-    var adapter = Adapter_Dados(array_paises)
+    var adapter = Adapter_Dados(this, array_paises, "paises")
     private var asyncTask: EstatisticasTask? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

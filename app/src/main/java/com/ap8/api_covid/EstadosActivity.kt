@@ -20,7 +20,7 @@ class EstadosActivity : AppCompatActivity() {
 
     private var estatisticasList = mutableListOf<Estatisticas>()
     var array_estados = ArrayList<String>()
-    var adapter = Adapter_Dados(array_estados)
+    var adapter = Adapter_Dados(this, array_estados, "estados")
     private var asyncTask: EstatisticasTask? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

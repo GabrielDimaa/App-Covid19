@@ -14,16 +14,16 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".DadosActivity"
-            android:label="@string/title_activity_dados"></activity>
+            android:label="@string/app_name"></activity>
         <activity
             android:name=".MundoActivity"
-            android:label="@string/title_activity_mundo" />
+            android:label="@string/app_name" />
         <activity
             android:name=".EstadosActivity"
-            android:label="@string/title_activity_estados" />
+            android:label="@string/app_name" />
         <activity
             android:name=".PaisesActivity"
-            android:label="@string/title_activity_paises" />
+            android:label="@string/app_name" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
@@ -33,6 +33,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

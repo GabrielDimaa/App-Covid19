@@ -1,17 +1,20 @@
 package com.ap8.api_covid
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.elemento_.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class Adapter_Dados(private var lista: ArrayList<String>):
+class Adapter_Dados(var context: Context, private var lista: ArrayList<String>, var endereco: String):
     RecyclerView.Adapter<Adapter_Dados.VH>(), Filterable  {
 
     var lista_filtrada: ArrayList<String> = lista
@@ -53,6 +56,16 @@ class Adapter_Dados(private var lista: ArrayList<String>):
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.elemento_, parent, false)
+
+        view.setOnClickListener(View.OnClickListener {
+            val intencao = Intent(context, DadosActivity::class.java)
+            val nome = view.local_name_.text.toString()
+
+            intencao.putExtra("nome", nome)
+            intencao.putExtra("endereco", endereco)
+            startActivity(context, intencao, null)
+        })
+
         val vh = VH(view)
         return vh
     }
