@@ -1,12 +1,12 @@
 package com.ap8.api_covid
 
-import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuItemCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +17,7 @@ class PaisesActivity : AppCompatActivity() {
 
     private var estatisticasList = mutableListOf<Estatisticas>()
     var array_paises = ArrayList<String>()
-    var adapter = Adapter_Dados(this, array_paises, "paises")
+    var adapter = Adapter_Dados(this, array_paises, estatisticasList, "paises")
     private var asyncTask: EstatisticasTask? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,6 +63,8 @@ class PaisesActivity : AppCompatActivity() {
                     asyncTask = EstatisticasTask()
                     asyncTask?.execute()
                 }
+            } else {
+                Toast.makeText(this, "Sem conexão!",Toast.LENGTH_LONG).show()
             }
         }
     }

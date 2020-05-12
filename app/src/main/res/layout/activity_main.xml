@@ -83,20 +83,6 @@
                 android:text="@string/estados"
                 android:textColor="@color/cultivado" />
 
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:layout_margin="2dp"
-                android:layout_weight="1"
-                android:background="@drawable/brasil"
-                android:drawableTop="@drawable/ic_brazil_map"
-                android:paddingVertical="60dp"
-                android:gravity="center"
-                android:text="Estados
-                Brasileiros"
-                android:textColor="@color/cultivado" />
-
         </LinearLayout>
 
     </LinearLayout>

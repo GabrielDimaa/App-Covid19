@@ -14,7 +14,12 @@ import kotlinx.android.synthetic.main.elemento_.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 
-class Adapter_Dados(var context: Context, private var lista: ArrayList<String>, var endereco: String):
+class Adapter_Dados(
+    var context: Context,
+    var lista: ArrayList<String>,
+    var listaJson: MutableList<Estatisticas>,
+    var endereco: String
+):
     RecyclerView.Adapter<Adapter_Dados.VH>(), Filterable  {
 
     var lista_filtrada: ArrayList<String> = lista
@@ -24,7 +29,7 @@ class Adapter_Dados(var context: Context, private var lista: ArrayList<String>, 
         return object : Filter() {
             override fun performFiltering(constraint: CharSequence?): FilterResults {
                 val charSearch = constraint.toString()
-                if (charSearch.isEmpty()) {
+                if(charSearch.isEmpty()) {
                     lista_filtrada = lista_aux
                 } else {
                     val resultList = ArrayList<String>()
@@ -60,14 +65,18 @@ class Adapter_Dados(var context: Context, private var lista: ArrayList<String>, 
         view.setOnClickListener(View.OnClickListener {
             val intencao = Intent(context, DadosActivity::class.java)
             val nome = view.local_name_.text.toString()
+            var uf: String? = null
+            if(endereco == "estados") {
+                uf = getEstado(nome)
+            }
 
             intencao.putExtra("nome", nome)
+            intencao.putExtra("uf", uf)
             intencao.putExtra("endereco", endereco)
             startActivity(context, intencao, null)
         })
 
-        val vh = VH(view)
-        return vh
+        return VH(view)
     }
 
     override fun getItemCount(): Int {
@@ -77,5 +86,15 @@ class Adapter_Dados(var context: Context, private var lista: ArrayList<String>, 
     override fun onBindViewHolder(holder: VH, position: Int) {
         val dados = lista[position]
         holder.name.text = dados
+    }
+
+    fun getEstado(nome: String): String? {
+        for(index in 0 .. listaJson.size - 1) {
+            val elemento = listaJson[index]
+            if(nome == elemento.state) {
+                return elemento.uf.toString()
+            }
+        }
+        return null
     }
 }

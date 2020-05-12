@@ -37,6 +37,13 @@ object EstatisticasHTTP {
         if(comPath == "/countries" || comPath == "") {
             val json_array = json_Object.getJSONArray("data")
             return readJsonArray(json_array, comPath)
+        } else if(comPath.length >= 10) {
+            if (comPath.substring(0, 10) == "/brazil/uf") {
+                var array_estatisticas = mutableListOf<Estatisticas>()
+                var json_ = getJsonEstados(json_Object)
+                array_estatisticas.add(json_)
+                return array_estatisticas
+            }
         }
 
         return readJsonObjetic(json_Object)

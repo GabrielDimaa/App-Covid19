@@ -2,6 +2,7 @@ package com.ap8.api_covid
 
 import android.os.AsyncTask
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_mundo_paises.*
 import java.text.DecimalFormat
@@ -38,6 +39,8 @@ class MundoActivity : AppCompatActivity() {
                 if(asyncTask?.status != AsyncTask.Status.RUNNING) {
                     asyncTask = EstatisticasTask()
                     asyncTask?.execute()
+                } else {
+                    Toast.makeText(this, "Sem conexão!", Toast.LENGTH_LONG).show()
                 }
             }
         }

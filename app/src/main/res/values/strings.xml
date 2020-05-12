@@ -10,5 +10,7 @@
     <string name="confirmados">Confirmados</string>
     <string name="mortes">Óbitos</string>
     <string name="curados">Casos Curados</string>
-    <string name="estatisticas_mundiais">Estatisticas \n Mundiais:</string>
+    <string name="suspeitos">Suspeitos</string>
+    <string name="descartados">Descartados</string>
+    <string name="estatisticas_mundiais">Estatistícas \n Mundiais:</string>
 </resources>

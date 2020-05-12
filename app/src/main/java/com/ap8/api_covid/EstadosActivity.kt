@@ -6,21 +6,17 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.SearchView
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuItemCompat
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_paises.*
 
 class EstadosActivity : AppCompatActivity() {
 
-    private var estatisticasList = mutableListOf<Estatisticas>()
+    var estatisticasList = mutableListOf<Estatisticas>()
     var array_estados = ArrayList<String>()
-    var adapter = Adapter_Dados(this, array_estados, "estados")
+    var adapter = Adapter_Dados(this, array_estados, estatisticasList, "estados")
     private var asyncTask: EstatisticasTask? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -64,6 +60,8 @@ class EstadosActivity : AppCompatActivity() {
                 if(asyncTask?.status != AsyncTask.Status.RUNNING) {
                     asyncTask = EstatisticasTask()
                     asyncTask?.execute()
+                } else {
+                    Toast.makeText(this, "Sem conexão!", Toast.LENGTH_LONG).show()
                 }
             }
         }
