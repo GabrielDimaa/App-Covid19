@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:background="@drawable/gradiente"
     android:layout_width="match_parent"
@@ -32,7 +33,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_title"
-        app:layout_constraintVertical_bias="0.16">
+        app:layout_constraintVertical_bias="0.312">
 
         <LinearLayout
             android:id="@+id/linear2"
@@ -53,7 +54,7 @@
                 android:text="@string/casos"
                 android:textColor="#FFFFFF"
                 android:textSize="20dp" />
-            \
+
             <TextView
                 android:id="@+id/view_casesResult"
                 android:layout_width="match_parent"
@@ -61,8 +62,8 @@
                 android:paddingHorizontal="24dp"
                 android:paddingVertical="12dp"
                 android:text="0"
-                android:textColor="#FFFFFF"
                 android:textAlignment="viewEnd"
+                android:textColor="#FFFFFF"
                 android:textSize="20dp" />
 
         </LinearLayout>
@@ -179,5 +180,15 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/bottom_nav_menu" />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/nav_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
