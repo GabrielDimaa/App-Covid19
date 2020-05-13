@@ -12,6 +12,8 @@
     <string name="curados">Casos Curados</string>
     <string name="suspeitos">Suspeitos</string>
     <string name="descartados">Descartados</string>
+    <string name="selecao" translatable="false">Selecione o País:</string>
+    <string name="selecao1" translatable="false">Selecione o Estado:</string>
     <string name="estatisticas_mundiais" translatable="false">Estatistícas \n Mundiais:</string>
     <string name="home" translatable="false">Home</string>
 </resources>

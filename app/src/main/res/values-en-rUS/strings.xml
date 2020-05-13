@@ -12,4 +12,6 @@
     <string name="curados" translatable="false">Recovered</string>
     <string name="suspeitos" translatable="false">Suspects</string>
     <string name="descartados" translatable="false">Refuses</string>
+    <string name="selecao" translatable="false">Select Country:</string>
+    <string name="selecao1" translatable="false">Select State:</string>
 </resources>
