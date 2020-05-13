@@ -18,6 +18,7 @@ class DadosActivity : AppCompatActivity() {
     private var asyncTask: EstatisticasTask? = null
     var paisOuEstado = ""
     var endereco = ""
+    var name = ""
     var dados_ = Estatisticas(
         country = null,
         uf = null,
@@ -41,6 +42,7 @@ class DadosActivity : AppCompatActivity() {
         endereco = endereco_
         if(endereco == "estados") {
             paisOuEstado = uf_
+            name = name_
             setContentView(R.layout.activity_estado_result)
         } else if(endereco == "paises") {
             setContentView(R.layout.activity_mundo_paises)
@@ -135,6 +137,7 @@ class DadosActivity : AppCompatActivity() {
     }
 
     fun exibirDadosEstado() {
+        paisOuEstado = name
         val df = DecimalFormat("###,###")
         view_casesResult.text = df.format(dados.cases)
         view_suspectsResult.text = df.format(dados.suspects)
